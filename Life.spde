@@ -1,0 +1,42 @@
+import ConwaysGameOfLife._
+
+val scale = 15
+
+val Dim = 30
+
+var life = glider ++ blinker.transposeX(20)
+
+size(Dim * scale, Dim * scale)
+frameRate(35)
+//smooth()
+
+override def setup() {
+  background(255)
+  /*
+  while (life.inDimensions(Dim,Dim)) {
+    redraw()
+    life = life.iterate  
+    delay(500)
+  }
+  exit()  */
+}
+
+override def mouseClicked() {
+  life = life.iterate  
+}
+
+def draw() {
+  render()
+}
+
+def render() {
+  noStroke()
+  fill(255)
+  rect(0, 0, Dim * scale, Dim * scale)
+
+  for (cell <- life.board) {
+    val (rx, ry, rw, rh) = (cell._1 * scale, cell._2 * scale, scale, scale)
+    fill(0)
+    rect(rx, ry, rw, rh)
+  }
+}

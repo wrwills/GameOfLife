@@ -1,10 +1,14 @@
-import ConwaysGameOfLife._
+import GameOfLife._
+
+val game = GameOfLife(Some(10000))
+
+import game._
 
 val scale = 15
 
 val Dim = 30
 
-var life = glider ++ blinker.transposeX(20)
+var life = Life(glider) ++ Life(blinker).transposeX(20)
 
 size(Dim * scale, Dim * scale)
 frameRate(35)
